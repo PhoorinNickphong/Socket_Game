@@ -14,3 +14,10 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     
     while True:
         guess = input('ลองทายเลขสิ 1 ถึง 100 หนะ!: ')
+        
+        # ส่งข้อมูลตัวเลขให้ server
+        s.sendall(guess.encode())
+        
+        # รับข้อมูลจาก server
+        data = s.recv(1024)
+        message = data.decode()
