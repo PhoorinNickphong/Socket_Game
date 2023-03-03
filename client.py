@@ -21,3 +21,15 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # รับข้อมูลจาก server
         data = s.recv(1024)
         message = data.decode()
+
+        # ตรวจสอบผลลัพธ์
+        if message == 'correct':
+            print('ก็ไม่ได้เก่งหนิ ดวงดีเฉยๆ!!')
+            break
+        elif message == 'small':
+            print('ต้องมากกว่านั้นสิ!!. ลองอีกครั้งซิ.')
+        elif message == 'large':
+            print('จะมากเกินไปแล้วน่ะ!!. ลองอีกครั้งซิ.')
+        elif message == 'limit':
+            print('ถ้าจะผิดขนาดนี้เลิกเล่นเหอะ!!. เหยาะ แหยะ:p')
+            break
