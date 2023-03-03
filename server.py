@@ -22,3 +22,27 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         # ส่งข้อมูลเริ่มต้นให้ client
         conn.sendall(b'Yin Dee Thon rub kub!!')
         count = 0
+
+        # รับข้อมูลจาก client
+        while True:
+            data = conn.recv(1024)
+            
+            # ตรวจสอบข้อมูล
+            if not data:
+                break
+            
+            # แปลงข้อมูลเป็นตัวเลข
+            guess = int(data.decode())
+            count += 1
+            
+            # ตรวจสอบค่า
+            if guess == number:
+                conn.sendall(b'correct')
+                break
+            elif count >= 10:
+                conn.sendall(b'limit')
+                break
+            elif guess < number:
+                conn.sendall(b'small')
+            elif guess > number:
+                conn.sendall(b'large')
